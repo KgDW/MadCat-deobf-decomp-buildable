@@ -1,0 +1,17 @@
+[
+  {
+    "modid": "madcat",
+    "name": "MadCat Hack",
+    "description": "By MadCat",
+    "version": "3.0",
+    "mcversion": "1.12.2",
+    "logoFile": "madcat.png",
+    "url": "NO url",
+    "updateUrl": "",
+    "authorList": [
+      "MadCat"
+    ],
+    "screenshots": [],
+    "dependencies": []
+  }
+]
