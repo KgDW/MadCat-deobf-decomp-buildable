@@ -79,7 +79,7 @@ extends CFont {
             GL11.glBindTexture(3553, this.tex.getGlTextureId());
             for (int i = 0; i < n2; ++i) {
                 char c = string.charAt(i);
-                if (c == '§' && i < n2) {
+                if (c == '\u00A7' && i < n2) {
                     int n3 = 21;
                     try {
                         n3 = "0123456789abcdefklmnor".indexOf(string.charAt(i + 1));
@@ -170,7 +170,7 @@ extends CFont {
         int n2 = string.length();
         for (int i = 0; i < n2; ++i) {
             char c = string.charAt(i);
-            if (c == '§' && i < n2) {
+            if (c == '\u00A7' && i < n2) {
                 int n3 = "0123456789abcdefklmnor".indexOf(c);
                 if (n3 < 16) {
                     bl = false;
@@ -240,7 +240,7 @@ extends CFont {
             for (String string3 : stringArray) {
                 for (int i = 0; i < string3.toCharArray().length; ++i) {
                     char c2 = string3.toCharArray()[i];
-                    if (c2 != '§' || i >= string3.toCharArray().length - 1) continue;
+                    if (c2 != '\u00A7' || i >= string3.toCharArray().length - 1) continue;
                     c = string3.toCharArray()[i + 1];
                 }
                 StringBuilder stringBuilder = new StringBuilder();
@@ -249,11 +249,11 @@ extends CFont {
                     continue;
                 }
                 arrayList.add(string2);
-                string2 = "§" + c + string3 + " ";
+                string2 = "\u00A7" + c + string3 + " ";
             }
             if (string2.length() > 0) {
                 if ((double)this.getStringWidth(string2) < d) {
-                    arrayList.add("§" + c + string2 + " ");
+                    arrayList.add("\u00A7" + c + string2 + " ");
                 } else {
                     arrayList.addAll(this.formatString(string2, d));
                 }
@@ -271,7 +271,7 @@ extends CFont {
         char[] cArray = string.toCharArray();
         for (int i = 0; i < cArray.length; ++i) {
             char c2 = cArray[i];
-            if (c2 == '§' && i < cArray.length - 1) {
+            if (c2 == '\u00A7' && i < cArray.length - 1) {
                 c = cArray[i + 1];
             }
             StringBuilder stringBuilder = new StringBuilder();
@@ -280,7 +280,7 @@ extends CFont {
                 continue;
             }
             arrayList.add(string2);
-            string2 = "§" + c + c2;
+            string2 = "\u00A7" + c + c2;
         }
         if (string2.length() > 0) {
             arrayList.add(string2);
