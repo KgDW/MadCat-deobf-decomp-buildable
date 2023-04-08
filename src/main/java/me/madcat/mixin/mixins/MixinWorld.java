@@ -24,11 +24,13 @@ public class MixinWorld {
         }
     }
 
-    @Redirect(method = { "handleMaterialAcceleration" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isPushedByWater()Z"))
-    public boolean isPushedbyWaterHook(final Entity entity) {
-        final PushEvent event = new PushEvent(2, entity);
-        MinecraftForge.EVENT_BUS.post(event);
-        return entity.isPushedByWater() && !event.isCanceled();
+    @Redirect(method={"handleMaterialAcceleration"}, at=@At(value="INVOKE", target="Lnet/minecraft/entity/Entity;isPushedByWater()Z"))
+    public boolean isPushedbyWaterHook(Entity entity) {
+        PushEvent event = new PushEvent(2, entity);
+        MinecraftForge.EVENT_BUS.post((Event)event);
+        if (!entity.isPushedByWater()) return false;
+        if (event.isCanceled()) return false;
+        return true;
     }
 }
  

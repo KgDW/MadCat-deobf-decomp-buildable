@@ -57,7 +57,7 @@ implements Wrapper {
         setting.setFeature(this);
         this.settings.add(setting);
         if (this instanceof Module && Feature.mc.currentScreen instanceof Gui) {
-            Gui.INSTANCE().updateModule((Module)this);
+            Gui.getInstance().updateModule((Module)this);
         }
         return setting;
     }
@@ -66,7 +66,7 @@ implements Wrapper {
         setting.setFeature(this);
         this.settings.add(setting);
         if (this instanceof Module && Feature.mc.currentScreen instanceof Gui) {
-            Gui.INSTANCE().updateModule((Module)this);
+            Gui.getInstance().updateModule((Module)this);
         }
         return setting;
     }
@@ -81,7 +81,7 @@ implements Wrapper {
             this.settings.removeAll(arrayList);
         }
         if (this instanceof Module && Feature.mc.currentScreen instanceof Gui) {
-            Gui.INSTANCE().updateModule((Module)this);
+            Gui.getInstance().updateModule((Module)this);
         }
     }
 

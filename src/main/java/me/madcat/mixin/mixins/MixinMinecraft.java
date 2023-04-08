@@ -1,20 +1,19 @@
 package me.madcat.mixin.mixins;
 
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import me.madcat.features.modules.player.MultiTask;
-import net.minecraft.client.entity.EntityPlayerSP;
 import me.madcat.MadCat;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.common.MinecraftForge;
 import me.madcat.event.events.KeyEvent;
-import org.lwjgl.input.Keyboard;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import me.madcat.features.modules.player.MultiTask;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.crash.CrashReport;
+import net.minecraftforge.common.MinecraftForge;
+import org.lwjgl.input.Keyboard;
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import net.minecraft.client.Minecraft;
-import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin({ Minecraft.class })
 public abstract class MixinMinecraft
@@ -31,10 +30,10 @@ public abstract class MixinMinecraft
 
     @Inject(method = { "runTickKeyboard" }, at = { @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE) })
     private void onKeyboard(final CallbackInfo callbackInfo) {
-        final int i = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + 'Ā') : Keyboard.getEventKey();
+        final int i = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + '\u0100') : Keyboard.getEventKey();
         if (Keyboard.getEventKeyState()) {
             final KeyEvent event = new KeyEvent(i);
-            MinecraftForge.EVENT_BUS.post((Event)event);
+            MinecraftForge.EVENT_BUS.post(event);
         }
     }
 
@@ -54,4 +53,3 @@ public abstract class MixinMinecraft
         return !MultiTask.INSTANCE().isOn() && playerControllerMP.getIsHittingBlock();
     }
 }
- 

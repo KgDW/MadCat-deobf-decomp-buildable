@@ -92,7 +92,7 @@ extends Button {
     @Override
     public void drawScreen(int n, int n2, float f) {
         if (this.isHovering(n, n2)) {
-            DescriptionDisplay descriptionDisplay = Gui.INSTANCE().getDescriptionDisplay();
+            DescriptionDisplay descriptionDisplay = Gui.getInstance().getDescriptionDisplay();
             descriptionDisplay.setDescription(this.module.getDescription());
             descriptionDisplay.setLocation(n + 2, n2 + 1);
             descriptionDisplay.setDraw(true);

@@ -6,79 +6,61 @@ import me.madcat.features.gui.components.Component;
 import me.madcat.features.gui.components.items.DescriptionDisplay;
 import me.madcat.features.gui.components.items.Item;
 import me.madcat.features.gui.components.items.buttons.ModuleButton;
-import me.madcat.features.gui.particle.Particle;
 import me.madcat.features.gui.particle.Snow;
 import me.madcat.features.modules.Module;
 import me.madcat.features.modules.client.ClickGui;
-import me.madcat.util.ColorUtil;
-import me.madcat.util.RenderUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Random;
-import java.util.function.Function;
 
-public class Gui extends GuiScreen {
+public class Gui
+        extends GuiScreen {
     private static final DescriptionDisplay descriptionDisplay;
     private static Gui INSTANCE;
-    private final ArrayList<Snow> _snowList;
-    private final ArrayList<Component> components;
-    private final Particle.Util particles;
+    private final ArrayList<Snow> _snowList = new ArrayList<>();
+    private final ArrayList<Component> components = new ArrayList<>();
 
     public Gui() {
-        this._snowList = new ArrayList<>();
-        this.components = new ArrayList<>();
-        this.particles = new Particle.Util(300);
         this.setInstance();
         this.load();
     }
 
-    public static Gui INSTANCE() {
-        if (Gui.INSTANCE == null) {
-            Gui.INSTANCE = new Gui();
+    public static Gui getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Gui();
         }
-        return Gui.INSTANCE;
+        return INSTANCE;
     }
 
     public static Gui getClickGui() {
-        return INSTANCE();
+        return Gui.getInstance();
     }
 
     private void setInstance() {
-        Gui.INSTANCE = this;
+        INSTANCE = this;
     }
 
     private void load() {
         int x = -84;
-        final Random random = new Random();
+        Random random = new Random();
         for (int i = 0; i < 100; ++i) {
             for (int y = 0; y < 3; ++y) {
-                final Snow snow = new Snow(25 * i, y * -50, random.nextInt(3) + 1, random.nextInt(2) + 1);
+                Snow snow = new Snow(25 * i, y * -50, random.nextInt(3) + 1, random.nextInt(2) + 1);
                 this._snowList.add(snow);
             }
         }
-        ArrayList<Component> components;
         for (final Module.Category category : MadCat.moduleManager.getCategories()) {
-            components = this.components;
-            final String name = category.getName();
-            x += 90;
-            components.add(new Component(name, x, 34, true) {
-
-                    Module.Category valcategory;{
-                    this.valcategory = category;
-                }
-
+            this.components.add(new Component(category.getName(), x += 90, 34, true){
 
                 @Override
                 public void setupItems() {
                     counter1 = new int[]{1};
-                    MadCat.moduleManager.getModulesByCategory(this.valcategory).forEach(module -> {
+                    MadCat.moduleManager.getModulesByCategory(category).forEach(module -> {
                         if (!module.hidden) {
                             this.addButton(new ModuleButton(module));
                         }
@@ -86,58 +68,41 @@ public class Gui extends GuiScreen {
                 }
             });
         }
-        this.components.forEach(Gui::load0);
+        this.components.forEach(components -> components.getItems().sort(Comparator.comparing(Feature::getName)));
     }
 
-    public void updateModule(final Module module) {
-        final Iterator<Component> iterator = this.components.iterator();
-        while (iterator.hasNext()) {
-            for (final Item item : iterator.next().getItems()) {
-                if (!(item instanceof ModuleButton)) {
-                    continue;
-                }
-                final ModuleButton moduleButton = (ModuleButton)item;
-                final Module module2 = moduleButton.getModule();
-                if (module == null) {
-                    continue;
-                }
-                if (!module.equals(module2)) {
-                    continue;
-                }
-                moduleButton.initSettings();
+    public void updateModule(Module module) {
+        for (Component component : this.components) {
+            for (Item item : component.getItems()) {
+                if (!(item instanceof ModuleButton)) continue;
+                ModuleButton button = (ModuleButton)item;
+                Module mod = button.getModule();
+                if (module == null || !module.equals(mod)) continue;
+                button.initSettings();
             }
         }
     }
 
-    public void drawScreen(final int mouseX, final int mouseY, final float n3) {
-        final ClickGui instance = ClickGui.INSTANCE();
-        Gui.descriptionDisplay.setDraw(false);
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        ClickGui clickGui = ClickGui.INSTANCE();
+        descriptionDisplay.setDraw(false);
         this.checkMouseWheel();
         this.drawDefaultBackground();
-        if (ClickGui.INSTANCE().background.getValue()) {
-            RenderUtil.drawVGradientRect(0.0f, 0.0f, (float)MadCat.textManager.scaledWidth, (float)MadCat.textManager.scaledHeight, new Color(0, 0, 0, 0).getRGB(), ColorUtil.toRGBA(MadCat.colorManager.getCurrent(ClickGui.INSTANCE().backgroundAlpha.getValue())));
+        this.components.forEach(components -> components.drawScreen(mouseX, mouseY, partialTicks));
+        if (descriptionDisplay.shouldDraw() && clickGui.moduleDescription.getValue()) {
+            descriptionDisplay.drawScreen(mouseX, mouseY, partialTicks);
         }
-        this.components.forEach(component -> component.onKeyTyped((char) mouseX, mouseY));
-        if (Gui.descriptionDisplay.shouldDraw() && instance.moduleDescription.getValue()) {
-            Gui.descriptionDisplay.drawScreen(mouseX, mouseY, n3);
-        }
-        final ScaledResolution res = new ScaledResolution(this.mc);
+        ScaledResolution res = new ScaledResolution(this.mc);
         if (!this._snowList.isEmpty() && ClickGui.INSTANCE().snowing.getValue()) {
             this._snowList.forEach(snow -> snow.Update(res));
         }
-        if (ClickGui.INSTANCE().particles.getValue()) {
-            this.particles.drawParticles();
-        }
     }
 
-    public void mouseClicked(final int mouseX, final int mouseY, final int clickedButton) {
-        this.components.forEach(Gui::mouseClicked3);
+    public void mouseClicked(int mouseX, int mouseY, int clickedButton) {
+        this.components.forEach(components -> components.mouseClicked(mouseX, mouseY, clickedButton));
     }
 
-    private static void mouseClicked3(Component component) {
-    }
-
-    public void mouseReleased(final int mouseX, final int mouseY, final int releaseButton) {
+    public void mouseReleased(int mouseX, int mouseY, int releaseButton) {
         this.components.forEach(components -> components.mouseReleased(mouseX, mouseY, releaseButton));
     }
 
@@ -150,16 +115,15 @@ public class Gui extends GuiScreen {
     }
 
     public DescriptionDisplay getDescriptionDisplay() {
-        return Gui.descriptionDisplay;
+        return descriptionDisplay;
     }
 
     public void checkMouseWheel() {
-        final int dWheel = Mouse.getDWheel();
+        int dWheel = Mouse.getDWheel();
         if (dWheel < 0) {
-            this.components.forEach(Gui::checkMouseWheel5);
-        }
-        else if (dWheel > 0) {
-            this.components.forEach(Gui::checkMouseWheel6);
+            this.components.forEach(component -> component.setY(component.getY() - 10));
+        } else if (dWheel > 0) {
+            this.components.forEach(component -> component.setY(component.getY() + 10));
         }
     }
 
@@ -167,25 +131,21 @@ public class Gui extends GuiScreen {
         return -6;
     }
 
-    public void keyTyped(final char c, final int mouseX) throws IOException {
-        super.keyTyped(c, mouseX);
-        this.components.forEach(component -> component.onKeyTyped(c, mouseX));
+    public Component getComponentByName(String name) {
+        for (Component component : this.components) {
+            if (!component.getName().equalsIgnoreCase(name)) continue;
+            return component;
+        }
+        return null;
     }
 
-    private static void checkMouseWheel6(final Component component) {
-        component.setY(component.getY() + 10);
-    }
-
-    private static void checkMouseWheel5(final Component component) {
-        component.setY(component.getY() - 10);
-    }
-
-    private static void load0(final Component component) {
-        component.getItems().sort(Comparator.comparing((Function<? super Item, ? extends Comparable>)Feature::getName));
+    public void keyTyped(char typedChar, int keyCode) throws IOException {
+        super.keyTyped(typedChar, keyCode);
+        this.components.forEach(component -> component.onKeyTyped(typedChar, keyCode));
     }
 
     static {
-        Gui.INSTANCE = new Gui();
+        INSTANCE = new Gui();
         descriptionDisplay = new DescriptionDisplay("", 0.0f, 0.0f);
     }
 }

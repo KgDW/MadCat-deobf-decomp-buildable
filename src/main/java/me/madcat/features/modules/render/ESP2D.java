@@ -384,7 +384,7 @@ extends Module {
                     }
                     double d11 = f2 / f3;
                     double d12 = (d10 - d8) * d11;
-                    string = this.dFormat.format(entityLivingBase.getHealth() + entityLivingBase.getAbsorptionAmount()) + " §c❤";
+                    string = this.dFormat.format(entityLivingBase.getHealth() + entityLivingBase.getAbsorptionAmount()) + " \u00a7\u0063\u2764";
                     String string2 = (int) (entityLivingBase.getHealth() / f3 * 100.0f) + "%";
                     if (this.healthNumber.getValue() && (!this.hoverValue.getValue() || entity == ESP2D.mc.player || this.isHovering(d7, d9, d8, d10, scaledResolution))) {
                         this.drawScaledString(this.hpMode.getValue() == Mode4.Health ? string : string2, d7 - 4.0 - (double) ((float) this.renderer.getStringWidth(this.hpMode.getValue() == Mode4.Health ? string : string2) * this.fontScaleValue.getValue()), d10 - d12 - (double) ((float) ESP2D.mc.fontRenderer.FONT_HEIGHT / 2.0f * this.fontScaleValue.getValue()), this.fontScaleValue.getValue());

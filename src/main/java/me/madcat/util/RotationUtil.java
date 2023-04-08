@@ -39,7 +39,7 @@ implements Wrapper {
             return "West (-X)";
         }
         if (n == 2) {
-            return (bl ? "Â§c" : "") + "North (-Z)";
+            return (bl ? "\u00c2\u00a7\u0063" : "") + "North (-Z)";
         }
         if (n == 3) {
             return "East (+X)";

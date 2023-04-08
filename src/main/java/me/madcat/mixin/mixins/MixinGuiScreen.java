@@ -35,12 +35,12 @@ public class MixinGuiScreen extends Gui
         }
     }
 
-    @Inject(method = { "drawScreen" }, at = { @At("HEAD") })
+    /*@Inject(method = { "drawScreen" }, at = { @At("HEAD") })
     public void drawScreenHook(final int mouseX, final int mouseY, final float mouseButton, final CallbackInfo callbackInfo) {
         if (this.mc.world == null) {
                 MadCat.textManager.drawStringWithShadow("MadCat 3.0 Q\u7fa4 589191561", 2.0f, 2.0f, MadCat.colorManager.getCurrent().getRGB());
             }
-        }
+        }*/
 
     @Inject(method = { "mouseClicked" }, at = { @At("HEAD") })
     public void mouseClickedHook(final int mouseX, final int mouseY, final int mouseButton, final CallbackInfo info) {
@@ -49,4 +49,3 @@ public class MixinGuiScreen extends Gui
         }
     }
 }
- 

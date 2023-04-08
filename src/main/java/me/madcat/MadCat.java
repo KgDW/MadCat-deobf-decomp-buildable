@@ -1,45 +1,29 @@
 package me.madcat;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.apache.logging.log4j.LogManager;
-import org.lwjgl.opengl.Display;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import me.madcat.manager.ServerManager;
-import me.madcat.manager.ModuleManager;
-import me.madcat.manager.TextManager;
-import me.madcat.manager.ConfigManager;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
-import me.madcat.manager.CommandManager;
-import me.madcat.manager.SpeedManager;
-import me.madcat.manager.InventoryManager;
-import me.madcat.manager.RotationManager;
-import me.madcat.manager.EventManager;
-import me.madcat.manager.FriendManager;
-import org.apache.logging.log4j.Logger;
-import me.madcat.manager.ReloadManager;
-import me.madcat.manager.ColorManager;
-import me.madcat.manager.FileManager;
-import me.madcat.manager.PositionManager;
-import me.madcat.manager.PacketManager;
-import me.madcat.manager.HoleManager;
-import me.madcat.manager.PotionManager;
+import me.madcat.manager.*;
 import net.minecraftforge.fml.common.Mod;
-
-@Mod(modid = "madcat", name = "madcat", version = "1.12.2")
-public class MadCat
-{
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.Display;
+    @Mod(modid = MadCat.MOD_ID, name = MadCat.MOD_NAME, version = MadCat.VERSION)
+    public class MadCat {
+        public static final String MOD_ID = "madcat";
+        public static final String MOD_NAME = "m3dc3t";
+        public static final String VERSION = "1.12.2";
+        public static final String MOD_VERSION = "3.0";
+        public static final Logger LOGGER = LogManager.getLogger("m3dc3t");
     public static PotionManager potionManager;
     public static HoleManager holeManager;
     public static PacketManager packetManager;
     public static PositionManager positionManager;
     public static FileManager fileManager;
-    public static final String MOD_ID;
+
     public static ColorManager colorManager;
     public static ReloadManager reloadManager;
-    public static final Logger LOGGER;
+
     public static FriendManager friendManager;
-    public static final String MOD_NAME;
-    public static final String VERSION;
     private static boolean unloaded;
     @Mod.Instance
     public static MadCat INSTANCE;
@@ -48,12 +32,10 @@ public class MadCat
     public static InventoryManager inventoryManager;
     public static SpeedManager speedManager;
     public static CommandManager commandManager;
-    public static final EventBus EVENT_BUS;
     public static ConfigManager configManager;
     public static TextManager textManager;
     public static ModuleManager moduleManager;
     public static ServerManager serverManager;
-    public static final String ID;
 
     public static void load() {
         MadCat.LOGGER.info("loading madcat");
@@ -102,16 +84,6 @@ public class MadCat
     @Mod.EventHandler
     public void preinit(final FMLPreInitializationEvent fmlPreInitializationEvent) {
         Display.setTitle("MadCat 3.0: Loading...");
-    }
-
-    static {
-        ID = "3.0";
-        MOD_ID = "madcat";
-        VERSION = "1.12.2";
-        MOD_NAME = "madcat";
-        LOGGER = LogManager.getLogger("madcat");
-        EVENT_BUS = new EventBus();
-        MadCat.unloaded = false;
     }
 
     @Mod.EventHandler

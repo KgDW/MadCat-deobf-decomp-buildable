@@ -80,7 +80,7 @@ implements Wrapper {
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
                 String string = jsonObject.get("name").getAsString();
                 long l = jsonObject.has("changedToAt") ? jsonObject.get("changedToAt").getAsLong() : 0L;
-                arrayList.add(string + "脗搂8" + new Date(l));
+                arrayList.add(string + "\u8117\u6402\u0038" + new Date(l));
             }
             Collections.sort(arrayList);
             return arrayList;

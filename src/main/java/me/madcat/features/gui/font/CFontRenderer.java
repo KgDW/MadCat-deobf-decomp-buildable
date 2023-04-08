@@ -86,7 +86,7 @@ extends CFont {
             GL11.glBindTexture(3553, this.tex.getGlTextureId());
             for (int i = 0; i < n2; ++i) {
                 char c = string.charAt(i);
-                if (c == '§' && i < n2) {
+                if (c == '\u00A7' && i < n2) {
                     int n3 = 21;
                     try {
                         n3 = "0123456789abcdefklmnor".indexOf(string.charAt(i + 1));
@@ -183,7 +183,7 @@ extends CFont {
         int n2 = string.length();
         for (int i = 0; i < n2; ++i) {
             char c = string.charAt(i);
-            if (c == '§' && i < n2) {
+            if (c == '\u00A7' && i < n2) {
                 int n3 = "0123456789abcdefklmnor".indexOf(c);
                 if (n3 < 16) {
                     bl = false;
@@ -254,7 +254,7 @@ extends CFont {
         for (int i = 0; i < cArray.length; ++i) {
             StringBuilder stringBuilder;
             char c2 = cArray[i];
-            if (c2 == '§' && i < cArray.length - 1) {
+            if (c2 == '\u00A7' && i < cArray.length - 1) {
                 c = cArray[i + 1];
             }
             if ((double)this.getStringWidth((stringBuilder = new StringBuilder()).append(string2).append(c2).toString()) < d) {
@@ -262,7 +262,7 @@ extends CFont {
                 continue;
             }
             arrayList.add(string2);
-            string2 = "§" + c + c2;
+            string2 = "\u00A7" + c + c2;
         }
         if (string2.length() > 0) {
             arrayList.add(string2);
