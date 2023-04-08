@@ -43,7 +43,7 @@ extends Feature {
     }
 
     public static char coolLineThing() {
-        return '§';
+        return '\u00a7';
     }
 
     public abstract void execute(String[] var1);

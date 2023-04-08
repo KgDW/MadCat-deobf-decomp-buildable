@@ -31,7 +31,7 @@ public abstract class MixinMinecraft
 
     @Inject(method = { "runTickKeyboard" }, at = { @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE) })
     private void onKeyboard(final CallbackInfo callbackInfo) {
-        final int i = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + 'Ā') : Keyboard.getEventKey();
+        final int i = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + '\u0100') : Keyboard.getEventKey();
         if (Keyboard.getEventKeyState()) {
             final KeyEvent event = new KeyEvent(i);
             MinecraftForge.EVENT_BUS.post((Event)event);

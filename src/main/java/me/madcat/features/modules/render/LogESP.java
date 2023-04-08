@@ -71,7 +71,7 @@ extends Module {
 
     @SubscribeEvent
     public void onConnection(ConnectionEvent connectionEvent) {
-        if (LogESP.mc.world.getPlayerEntityByUUID(connectionEvent.getUuid()) != null && LogESP.mc.world.getPlayerEntityByUUID(connectionEvent.getUuid()).getName().equals("§a§l[赞助本服]")) {
+        if (LogESP.mc.world.getPlayerEntityByUUID(connectionEvent.getUuid()) != null && LogESP.mc.world.getPlayerEntityByUUID(connectionEvent.getUuid()).getName().equals("\u00a7\u0061\u00a7\u006c\u005b\u8d5e\u52a9\u672c\u670d\u005d")) {
             return;
         }
         if (connectionEvent.getStage() == 0) {
