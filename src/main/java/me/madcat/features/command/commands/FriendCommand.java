@@ -22,7 +22,7 @@ extends Command {
                     try {
                         string.append(friend.getUsername()).append(", ");
                     }
-                    catch (Exception exception) {}
+                    catch (Exception ignored) {}
                 }
                 FriendCommand.sendMessage(string.toString());
             }

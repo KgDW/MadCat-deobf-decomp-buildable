@@ -114,7 +114,7 @@ extends Module {
     @Override
     public String getDisplayInfo() {
         if (this.packets != null) {
-            return this.packets.size() + "";
+            return String.valueOf(this.packets.size());
         }
         return null;
     }

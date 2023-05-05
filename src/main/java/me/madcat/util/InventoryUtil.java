@@ -73,7 +73,7 @@ implements Wrapper {
             if (itemStack.getItem() == Items.AIR || !(itemStack.getItem() instanceof ItemArmor) || (itemArmor = (ItemArmor)itemStack.getItem()).getEquipmentSlot() != entityEquipmentSlot) continue;
             float f2 = itemArmor.damageReduceAmount + EnchantmentHelper.getEnchantmentLevel(Enchantments.PROTECTION, itemStack);
             boolean bl3 = bl && EnchantmentHelper.hasBindingCurse(itemStack) || (bl2 = false);
-            if (!(f2 > f) || bl2) continue;
+            if (!(f2 > f)) continue;
             f = f2;
             n = i;
         }
@@ -200,7 +200,7 @@ implements Wrapper {
                 if (itemStack.getItem() == Items.AIR || !(itemStack.getItem() instanceof ItemArmor) || (itemArmor = (ItemArmor)itemStack.getItem()).getEquipmentSlot() != entityEquipmentSlot) continue;
                 float f2 = itemArmor.damageReduceAmount + EnchantmentHelper.getEnchantmentLevel(Enchantments.PROTECTION, itemStack);
                 boolean bl4 = bl && EnchantmentHelper.hasBindingCurse(itemStack) || (bl3 = false);
-                if (!(f2 > f) || bl3) continue;
+                if (!(f2 > f)) continue;
                 f = f2;
                 n = i;
             }

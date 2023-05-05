@@ -53,7 +53,7 @@ extends Feature {
 
     public String getPotionString(PotionEffect potionEffect) {
         Potion potion = potionEffect.getPotion();
-        return I18n.format(potion.getName(), new Object[0]) + " " + (potionEffect.getAmplifier() + 1) + " " + ChatFormatting.WHITE + Potion.getPotionDurationString(potionEffect, 1.0f);
+        return I18n.format(potion.getName()) + " " + (potionEffect.getAmplifier() + 1) + " " + ChatFormatting.WHITE + Potion.getPotionDurationString(potionEffect, 1.0f);
     }
 
     public static class PotionList {

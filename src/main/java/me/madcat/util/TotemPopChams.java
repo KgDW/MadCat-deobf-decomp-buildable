@@ -33,9 +33,7 @@ public class TotemPopChams {
     }
 
     public static void renderEntity(EntityLivingBase entityLivingBase, ModelBase modelBase, float f, float f2, float f3, float f4, float f5, float f6) {
-        if (mc.getRenderManager() == null) {
-            return;
-        }
+        mc.getRenderManager();
         float f7 = mc.getRenderPartialTicks();
         double d = entityLivingBase.posX - TotemPopChams.mc.getRenderManager().viewerPosX;
         double d2 = entityLivingBase.posY - TotemPopChams.mc.getRenderManager().viewerPosY;
@@ -83,7 +81,7 @@ public class TotemPopChams {
         }
         Color color3 = TotemPopChams.newAlpha(color, n);
         Color color4 = TotemPopChams.newAlpha(color2, n2);
-        if (this.player != null && this.playerModel != null) {
+        if (this.playerModel != null) {
             PopChams.prepareGL();
             GL11.glPushAttrib(1048575);
             GL11.glEnable(2881);

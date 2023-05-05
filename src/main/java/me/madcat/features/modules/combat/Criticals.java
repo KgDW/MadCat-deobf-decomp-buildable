@@ -42,9 +42,6 @@ extends Module {
         }
         if (send.getPacket() instanceof CPacketUseEntity && (cPacketUseEntity = send.getPacket()).getAction() == CPacketUseEntity.Action.ATTACK) {
             boolean bl = false;
-            if (bl) {
-                return;
-            }
             if (!this.timer.passedMs(0L)) {
                 return;
             }

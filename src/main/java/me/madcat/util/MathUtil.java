@@ -176,7 +176,7 @@ implements Wrapper {
         if (d5 < 0.1) {
             d5 = 0.1;
         }
-        d2 = bl ? d2 + d5 : d2 - d5;
+        d2 = d2 - d5;
         return d2;
     }
 

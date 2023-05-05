@@ -56,7 +56,8 @@ extends Module {
 
     @SubscribeEvent
     public void onBlockInteract(PlayerInteractEvent.LeftClickBlock leftClickBlock) {
-        if (this.autoTool.getValue() && !Feature.fullNullCheck() && leftClickBlock.getPos() != null) {
+        if (this.autoTool.getValue() && !Feature.fullNullCheck()) {
+            leftClickBlock.getPos();
             this.equipBestTool(BlockTweaks.mc.world.getBlockState(leftClickBlock.getPos()));
         }
     }

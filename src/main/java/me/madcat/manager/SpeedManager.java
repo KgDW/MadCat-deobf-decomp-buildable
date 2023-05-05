@@ -35,7 +35,7 @@ extends Feature {
         double d2 = SpeedManager.mc.player.posZ - SpeedManager.mc.player.prevPosZ;
         this.speedometerCurrentSpeed = d * d + d2 * d2;
         if (didJumpThisTick && (!SpeedManager.mc.player.onGround || isJumping)) {
-            if (didJumpThisTick && !this.didJumpLastTick) {
+            if (!this.didJumpLastTick) {
                 boolean bl = this.lastJumpSpeed == 0.0 || (this.wasFirstJump = false);
                 this.percentJumpSpeedChanged = this.speedometerCurrentSpeed != 0.0 ? this.speedometerCurrentSpeed / this.lastJumpSpeed - 1.0 : -1.0;
                 this.jumpSpeedChanged = this.speedometerCurrentSpeed - this.lastJumpSpeed;

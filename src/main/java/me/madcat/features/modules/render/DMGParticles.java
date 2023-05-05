@@ -105,7 +105,7 @@ extends Module {
             Color color = Color.YELLOW;
             Vec3d vec3d = new Vec3d(particle.posX + Math.random() * 0.5 * (double)(Math.random() > 0.5 ? -1 : 1), particle.getEntityBoundingBox().minY + (particle.getEntityBoundingBox().maxY - particle.getEntityBoundingBox().minY) * 0.5, particle.posZ + Math.random() * 0.5 * (double)(Math.random() > 0.5 ? -1 : 1));
             double d2 = new BigDecimal(Math.abs(d - (double)entityLivingBase.getHealth())).setScale(1, 4).doubleValue();
-            this.particles.add(new Particle("" + d2, vec3d.x, vec3d.y, vec3d.z, color));
+            this.particles.add(new Particle(String.valueOf(d2), vec3d.x, vec3d.y, vec3d.z, color));
         }
     }
 

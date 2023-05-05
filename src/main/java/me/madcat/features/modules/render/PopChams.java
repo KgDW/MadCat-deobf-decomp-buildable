@@ -65,9 +65,7 @@ extends Module {
     }
 
     public static void renderEntity(EntityLivingBase entityLivingBase, ModelBase modelBase, float f, float f2, float f3, float f4, float f5, int n) {
-        if (mc.getRenderManager() == null) {
-            return;
-        }
+        mc.getRenderManager();
         float f6 = mc.getRenderPartialTicks();
         double d = entityLivingBase.posX - PopChams.mc.getRenderManager().viewerPosX;
         double d2 = entityLivingBase.posY - PopChams.mc.getRenderManager().viewerPosY;
@@ -164,22 +162,25 @@ extends Module {
         if (Feature.fullNullCheck()) {
             return;
         }
-        if (receive.getPacket() instanceof SPacketEntityStatus && (sPacketEntityStatus = receive.getPacket()).getOpCode() == 35 && sPacketEntityStatus.getEntity(PopChams.mc.world) != null && (self.getValue() || sPacketEntityStatus.getEntity(PopChams.mc.world).getEntityId() != PopChams.mc.player.getEntityId())) {
-            GameProfile gameProfile = new GameProfile(PopChams.mc.player.getUniqueID(), "");
-            this.player = new EntityOtherPlayerMP(PopChams.mc.world, gameProfile);
-            this.player.copyLocationAndAnglesFrom(sPacketEntityStatus.getEntity(PopChams.mc.world));
-            this.playerModel = new ModelPlayer(0.0f, false);
-            this.startTime = System.currentTimeMillis();
-            this.playerModel.bipedHead.showModel = false;
-            this.playerModel.bipedBody.showModel = false;
-            this.playerModel.bipedLeftArmwear.showModel = false;
-            this.playerModel.bipedLeftLegwear.showModel = false;
-            this.playerModel.bipedRightArmwear.showModel = false;
-            this.playerModel.bipedRightLegwear.showModel = false;
-            this.alphaFill = aF.getValue();
-            this.alphaLine = aL.getValue();
-            if (!onlyOneEsp.getValue()) {
-                TotemPopChams totemPopChams = new TotemPopChams(this.player, this.playerModel, this.startTime, this.alphaFill, this.alphaLine);
+        if (receive.getPacket() instanceof SPacketEntityStatus && (sPacketEntityStatus = receive.getPacket()).getOpCode() == 35) {
+            sPacketEntityStatus.getEntity(PopChams.mc.world);
+            if (self.getValue() || sPacketEntityStatus.getEntity(PopChams.mc.world).getEntityId() != PopChams.mc.player.getEntityId()) {
+                GameProfile gameProfile = new GameProfile(PopChams.mc.player.getUniqueID(), "");
+                this.player = new EntityOtherPlayerMP(PopChams.mc.world, gameProfile);
+                this.player.copyLocationAndAnglesFrom(sPacketEntityStatus.getEntity(PopChams.mc.world));
+                this.playerModel = new ModelPlayer(0.0f, false);
+                this.startTime = System.currentTimeMillis();
+                this.playerModel.bipedHead.showModel = false;
+                this.playerModel.bipedBody.showModel = false;
+                this.playerModel.bipedLeftArmwear.showModel = false;
+                this.playerModel.bipedLeftLegwear.showModel = false;
+                this.playerModel.bipedRightArmwear.showModel = false;
+                this.playerModel.bipedRightLegwear.showModel = false;
+                this.alphaFill = aF.getValue();
+                this.alphaLine = aL.getValue();
+                if (!onlyOneEsp.getValue()) {
+                    TotemPopChams totemPopChams = new TotemPopChams(this.player, this.playerModel, this.startTime, this.alphaFill, this.alphaLine);
+                }
             }
         }
     }

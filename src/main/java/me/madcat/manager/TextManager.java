@@ -1,9 +1,7 @@
 package me.madcat.manager;
 
 import me.madcat.features.gui.font.CFont;
-import me.madcat.util.MathUtil;
-import java.awt.Color;
-import net.minecraft.util.math.MathHelper;
+
 import java.awt.Font;
 import me.madcat.features.modules.client.FontMod;
 import me.madcat.features.gui.font.CFontRenderer;
@@ -95,8 +93,8 @@ public class TextManager extends Feature
     public TextManager() {
         this.iconFont = new CFontRenderer(new CFont.CustomFont("/assets/minecraft/textures/fonts/IconFont.ttf", 20.0f, 0), true, false);
         this.idleTimer = new Timer();
-        this.ClickGuiFont = new CustomFont(new Font("Arial", 0, 17), true, true);
-        this.customFont = new CustomFont(new Font("Arial", 0, 17), true, true);
+        this.ClickGuiFont = new CustomFont(new Font("Arial", Font.PLAIN, 17), true, true);
+        this.customFont = new CustomFont(new Font("Arial", Font.PLAIN, 17), true, true);
         this.updateResolution();
     }
 

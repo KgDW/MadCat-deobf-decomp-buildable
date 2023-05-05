@@ -25,7 +25,6 @@ extends Module {
     private float lastPitch;
     private int normalLookPos;
     private int rotationMode;
-    private final Setting<Float> antiLagTime;
 
     @SubscribeEvent
     public final void onPacketSend(PacketEvent.Send send) {
@@ -77,7 +76,7 @@ extends Module {
         super("Timer", "Timer", Module.Category.PLAYER);
         this.packetControl = this.register(new Setting<>("PacketControl", true));
         this.packetLimit = this.register(new Setting<>("PacketLimit", 200.0f, 10.0f, 1000.0f, this::new0));
-        this.antiLagTime = this.register(new Setting<>("AntiLagTime", 30.0f, 10.0f, 100.0f, this::new1));
+        Setting<Float> antiLagTime = this.register(new Setting<>("AntiLagTime", 30.0f, 10.0f, 100.0f, this::new1));
         Setting<Float> tickNormal2 = this.register(new Setting<>("AntiLagSpeed", 1.2f, 0.5f, 2.0f, this::new2));
         this.packetListReset = new Timer();
         this.setInstance();
@@ -115,8 +114,6 @@ extends Module {
             this.antiLagTimed = 0;
         }
         ++this.antiLagTimed;
-        if ((float) this.antiLagTimed > this.antiLagTime.getValue()) {
-        }
     }
 
     public static float nextFloat(float f, float f2) {
@@ -134,7 +131,7 @@ extends Module {
 
     @Override
     public String getDisplayInfo() {
-        return TextFormatting.RED + "" + this.packet + "";
+        return TextFormatting.RED + String.valueOf(this.packet);
     }
 
     private boolean new0(Float f) {

@@ -105,19 +105,22 @@ extends Module {
         }
         if (this.blur.getValue()) {
             if (OpenGlHelper.shadersSupported && mc.getRenderViewEntity() instanceof EntityPlayer) {
-                if (ClickGui.mc.entityRenderer.getShaderGroup() != null) {
-                    ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-                }
+                ClickGui.mc.entityRenderer.getShaderGroup();
+                ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
                 try {
                     ClickGui.mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
                 }
                 catch (Exception exception) {
                     exception.printStackTrace();
                 }
-            } else if (ClickGui.mc.entityRenderer.getShaderGroup() != null && ClickGui.mc.currentScreen == null) {
-                ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+            } else {
+                ClickGui.mc.entityRenderer.getShaderGroup();
+                if (ClickGui.mc.currentScreen == null) {
+                    ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                }
             }
-        } else if (ClickGui.mc.entityRenderer.getShaderGroup() != null) {
+        } else {
+            ClickGui.mc.entityRenderer.getShaderGroup();
             ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
         }
     }
@@ -135,9 +138,8 @@ extends Module {
         if (ClickGui.mc.currentScreen instanceof Gui) {
             mc.displayGuiScreen(null);
         }
-        if (ClickGui.mc.entityRenderer.getShaderGroup() != null) {
-            ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-        }
+        ClickGui.mc.entityRenderer.getShaderGroup();
+        ClickGui.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
     }
 
     private boolean new35(Object object) {

@@ -201,7 +201,7 @@ extends Module {
             GlStateManager.enableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            this.renderer.drawStringWithShadow(sum + "", (float)(n4 + 19 - 2 - this.renderer.getStringWidth(sum + "")), (float)(n3 + 9), 16777215);
+            this.renderer.drawStringWithShadow(String.valueOf(sum), (float)(n4 + 19 - 2 - this.renderer.getStringWidth(String.valueOf(sum))), (float)(n3 + 9), 16777215);
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
             int sum2 = HUD.mc.player.inventory.mainInventory.stream().filter(HUD::onRender2D50).mapToInt(ItemStack::getCount).sum();
@@ -217,7 +217,7 @@ extends Module {
             GlStateManager.enableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            this.renderer.drawStringWithShadow(sum2 + "", (float)(n5 + 19 - 2 - this.renderer.getStringWidth(sum2 + "")), (float)(n3 + 9), 16777215);
+            this.renderer.drawStringWithShadow(String.valueOf(sum2), (float)(n5 + 19 - 2 - this.renderer.getStringWidth(String.valueOf(sum2))), (float)(n3 + 9), 16777215);
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
             int sum3 = HUD.mc.player.inventory.mainInventory.stream().filter(HUD::onRender2D51).mapToInt(ItemStack::getCount).sum();
@@ -233,7 +233,7 @@ extends Module {
             GlStateManager.enableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            this.renderer.drawStringWithShadow(sum3 + "", (float)(n6 + 19 - 2 - this.renderer.getStringWidth(sum3 + "")), (float)(n3 + 9), 16777215);
+            this.renderer.drawStringWithShadow(String.valueOf(sum3), (float)(n6 + 19 - 2 - this.renderer.getStringWidth(String.valueOf(sum3))), (float)(n3 + 9), 16777215);
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
             int sum4 = HUD.mc.player.inventory.mainInventory.stream().filter(HUD::onRender2D52).mapToInt(ItemStack::getCount).sum();
@@ -249,7 +249,7 @@ extends Module {
             GlStateManager.enableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            this.renderer.drawStringWithShadow(sum4 + "", (float)(n7 + 19 - 2 - this.renderer.getStringWidth(sum4 + "")), (float)(n3 + 9), 16777215);
+            this.renderer.drawStringWithShadow(String.valueOf(sum4), (float)(n7 + 19 - 2 - this.renderer.getStringWidth(String.valueOf(sum4))), (float)(n3 + 9), 16777215);
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
             final int sum5 = HUD.mc.player.inventory.mainInventory.stream().filter(HUD::onRender2D53).mapToInt(ItemStack::getCount).sum();
@@ -262,7 +262,7 @@ extends Module {
             GlStateManager.enableTexture2D();
             GlStateManager.disableLighting();
             GlStateManager.disableDepth();
-            this.renderer.drawStringWithShadow(sum5 + "", (float)(n8 + 19 - 2 - this.renderer.getStringWidth(sum5 + "")), (float)(n3 + 9), 16777215);
+            this.renderer.drawStringWithShadow(String.valueOf(sum5), (float)(n8 + 19 - 2 - this.renderer.getStringWidth(String.valueOf(sum5))), (float)(n3 + 9), 16777215);
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
         }
@@ -287,7 +287,7 @@ extends Module {
                 GlStateManager.enableTexture2D();
                 GlStateManager.disableLighting();
                 GlStateManager.disableDepth();
-                final String s = (itemStack.getCount() > 1) ? (itemStack.getCount() + "") : "";
+                final String s = (itemStack.getCount() > 1) ? (String.valueOf(itemStack.getCount())) : "";
                 this.renderer.drawStringWithShadow(s, (float)(n12 + 19 - 2 - this.renderer.getStringWidth(s)), (float)(n11 + 9), 16777215);
                 final float n13 = (itemStack.getMaxDamage() - (float)itemStack.getItemDamage()) / itemStack.getMaxDamage();
                 final float n14 = 1.0f - n13;
@@ -295,7 +295,7 @@ extends Module {
                 if (n15 == -2147483547) {
                     n15 = 100;
                 }
-                this.renderer.drawStringWithShadow(n15 + "", (float)(n12 + 8 - this.renderer.getStringWidth(n15 + "") / 2), (float)(n11 - 11), ColorUtil.toRGBA((int)(n14 * 255.0f), (int)(n13 * 255.0f), 0));
+                this.renderer.drawStringWithShadow(String.valueOf(n15), (float)(n12 + 8 - this.renderer.getStringWidth(String.valueOf(n15)) / 2), (float)(n11 - 11), ColorUtil.toRGBA((int)(n14 * 255.0f), (int)(n13 * 255.0f), 0));
             }
             GlStateManager.enableDepth();
             GlStateManager.disableLighting();
@@ -319,9 +319,8 @@ extends Module {
                     for (final char c : charArray) {
                         this.renderer.drawString(String.valueOf(c), 2.0f + n16, 2.0f, ColorUtil.rainbow(array[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB(), true);
                         n16 += this.renderer.getStringWidth(String.valueOf(c));
-                        final int[] array3 = array;
                         final int n17 = 0;
-                        ++array3[n17];
+                        ++array[n17];
                     }
                 }
             }
@@ -347,9 +346,8 @@ extends Module {
                     for (final char c2 : charArray2) {
                         this.renderer.drawString(String.valueOf(c2), this.compactX.getValue() + 5 + n18, (float)(this.compactY.getValue() + 4), ColorUtil.rainbow(array4[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB(), true);
                         n18 += this.renderer.getStringWidth(String.valueOf(c2));
-                        final int[] array6 = array4;
                         final int n19 = 0;
-                        ++array6[n19];
+                        ++array4[n19];
                     }
                 }
             }
@@ -368,13 +366,12 @@ extends Module {
                     for (int k = 0; k < MadCat.moduleManager.sortedModulesABC.size(); ++k) {
                         final String s2 = MadCat.moduleManager.sortedModulesABC.get(k);
                         if (this.glow.getValue()) {
-                            RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(s2), 2 + n20 * 4 + this.arraylisty.getValue() - 7, scaledWidth3, 2 + n20 * 4 + this.arraylisty.getValue() + 14, ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
+                            RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(s2), 2 + n20 * 4 + this.arraylisty.getValue() - 7, scaledWidth3, 2 + n20 * 4 + this.arraylisty.getValue() + 14, ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
                         }
-                        this.renderer.drawString(s2, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(s2)), (float)(2 + n20 * 4 + this.arraylisty.getValue()), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
+                        this.renderer.drawString(s2, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(s2)), (float)(2 + n20 * 4 + this.arraylisty.getValue()), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                         n20 += 3;
-                        final int[] array8 = array7;
                         final int n21 = 0;
-                        ++array8[n21];
+                        ++array7[n21];
                     }
                 }
                 else {
@@ -383,13 +380,12 @@ extends Module {
                         if (module.getBind().getKey() != -1 || !this.onlyBind.getValue()) {
                             final String string3 = module.getDisplayName() + ChatFormatting.GRAY + ((module.getDisplayInfo() != null) ? (" [" + ChatFormatting.WHITE + module.getDisplayInfo() + ChatFormatting.GRAY + "]") : "");
                             if (this.glow.getValue()) {
-                                RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(string3), 2 + n20 * 4 + this.arraylisty.getValue() - 7, scaledWidth3, 2 + n20 * 4 + this.arraylisty.getValue() + 14, ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
+                                RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(string3), 2 + n20 * 4 + this.arraylisty.getValue() - 7, scaledWidth3, 2 + n20 * 4 + this.arraylisty.getValue() + 14, ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
                             }
-                            this.renderer.drawString(string3, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(string3)), (float)(2 + n20 * 4 + this.arraylisty.getValue()), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
+                            this.renderer.drawString(string3, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(string3)), (float)(2 + n20 * 4 + this.arraylisty.getValue()), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                             n20 += 3;
-                            final int[] array9 = array7;
                             final int n22 = 0;
-                            ++array9[n22];
+                            ++array7[n22];
                         }
                     }
                 }
@@ -399,12 +395,11 @@ extends Module {
                     final String s3 = MadCat.moduleManager.sortedModulesABC.get(n23);
                     n20 += 12;
                     if (this.glow.getValue()) {
-                        RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(s3), scaledHeight3 - n20 - 14, scaledWidth3, scaledHeight3 - n20 + 7, ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
+                        RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(s3), scaledHeight3 - n20 - 14, scaledWidth3, scaledHeight3 - n20 + 7, ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
                     }
-                    this.renderer.drawString(s3, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(s3)), (float)(scaledHeight3 - n20), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array10 = array7;
+                    this.renderer.drawString(s3, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(s3)), (float)(scaledHeight3 - n20), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n24 = 0;
-                    ++array10[n24];
+                    ++array7[n24];
                 }
             }
             else {
@@ -414,12 +409,11 @@ extends Module {
                         final String string4 = module2.getDisplayName() + ChatFormatting.GRAY + ((module2.getDisplayInfo() != null) ? (" [" + ChatFormatting.WHITE + module2.getDisplayInfo() + ChatFormatting.GRAY + "]") : "");
                         n20 += 12;
                         if (this.glow.getValue()) {
-                            RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(string4), scaledHeight3 - n20 - 14, scaledWidth3, scaledHeight3 - n20 + 7, ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
+                            RenderUtil.drawGlow(scaledWidth3 - 2 - this.renderer.getStringWidth(string4), scaledHeight3 - n20 - 14, scaledWidth3, scaledHeight3 - n20 + 7, ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.toRGBA(new Color(ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRed(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getGreen(), ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getBlue(), 100)) : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : ColorUtil.toRGBA(ClickGui.INSTANCE().red.getValue(), ClickGui.INSTANCE().green.getValue(), ClickGui.INSTANCE().blue.getValue(), 100));
                         }
-                        this.renderer.drawString(string4, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(string4)), (float)(scaledHeight3 - n20), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                        final int[] array11 = array7;
+                        this.renderer.drawString(string4, (float)(scaledWidth3 - 2 - this.renderer.getStringWidth(string4)), (float)(scaledHeight3 - n20), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                         final int n26 = 0;
-                        ++array11[n26];
+                        ++array7[n26];
                     }
                 }
             }
@@ -430,112 +424,98 @@ extends Module {
             if (this.server.getValue()) {
                 final String string5 = s4 + "IP " + ChatFormatting.WHITE + (HUD.mc.isSingleplayer() ? "SinglePlayer" : Objects.requireNonNull(HUD.mc.getCurrentServerData()).serverIP);
                 n27 += 10;
-                this.renderer.drawString(string5, (float)(scaledWidth3 - this.renderer.getStringWidth(string5) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array12 = array7;
+                this.renderer.drawString(string5, (float)(scaledWidth3 - this.renderer.getStringWidth(string5) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n28 = 0;
-                ++array12[n28];
+                ++array7[n28];
             }
             if (this.speed.getValue()) {
                 final String string6 = s4 + "Speed " + ChatFormatting.WHITE + MadCat.speedManager.getSpeedKpH() + " km/h";
                 n27 += 10;
-                this.renderer.drawString(string6, (float)(scaledWidth3 - this.renderer.getStringWidth(string6) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array13 = array7;
+                this.renderer.drawString(string6, (float)(scaledWidth3 - this.renderer.getStringWidth(string6) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n29 = 0;
-                ++array13[n29];
+                ++array7[n29];
             }
             if (this.tps.getValue()) {
                 final String string7 = s4 + "TPS " + ChatFormatting.WHITE + MadCat.serverManager.getTPS();
                 n27 += 10;
-                this.renderer.drawString(string7, (float)(scaledWidth3 - this.renderer.getStringWidth(string7) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array14 = array7;
+                this.renderer.drawString(string7, (float)(scaledWidth3 - this.renderer.getStringWidth(string7) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n30 = 0;
-                ++array14[n30];
+                ++array7[n30];
             }
             final String string8 = s4 + "FPS " + ChatFormatting.WHITE + Minecraft.getDebugFPS();
             final String string9 = s4 + "Ping " + ChatFormatting.WHITE + MadCat.serverManager.getPing();
             if (this.renderer.getStringWidth(string9) > this.renderer.getStringWidth(string8)) {
                 if (this.ping.getValue()) {
                     n27 += 10;
-                    this.renderer.drawString(string9, (float)(scaledWidth3 - this.renderer.getStringWidth(string9) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array15 = array7;
+                    this.renderer.drawString(string9, (float)(scaledWidth3 - this.renderer.getStringWidth(string9) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n31 = 0;
-                    ++array15[n31];
+                    ++array7[n31];
                 }
                 if (this.fps.getValue()) {
                     n27 += 10;
-                    this.renderer.drawString(string8, (float)(scaledWidth3 - this.renderer.getStringWidth(string8) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array16 = array7;
+                    this.renderer.drawString(string8, (float)(scaledWidth3 - this.renderer.getStringWidth(string8) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n32 = 0;
-                    ++array16[n32];
+                    ++array7[n32];
                 }
             }
             else {
                 if (this.fps.getValue()) {
                     n27 += 10;
-                    this.renderer.drawString(string8, (float)(scaledWidth3 - this.renderer.getStringWidth(string8) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array17 = array7;
+                    this.renderer.drawString(string8, (float)(scaledWidth3 - this.renderer.getStringWidth(string8) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n33 = 0;
-                    ++array17[n33];
+                    ++array7[n33];
                 }
                 if (this.ping.getValue()) {
                     n27 += 10;
-                    this.renderer.drawString(string9, (float)(scaledWidth3 - this.renderer.getStringWidth(string9) - 2), (float)(scaledHeight3 - 2 - n27), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array18 = array7;
+                    this.renderer.drawString(string9, (float)(scaledWidth3 - this.renderer.getStringWidth(string9) - 2), (float)(scaledHeight3 - 2 - n27), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n34 = 0;
-                    ++array18[n34];
+                    ++array7[n34];
                 }
             }
         }
         else {
             if (this.server.getValue()) {
                 final String string10 = s4 + "IP " + ChatFormatting.WHITE + (HUD.mc.isSingleplayer() ? "SinglePlayer" : Objects.requireNonNull(HUD.mc.getCurrentServerData()).serverIP);
-                this.renderer.drawString(string10, (float)(scaledWidth3 - this.renderer.getStringWidth(string10) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array19 = array7;
+                this.renderer.drawString(string10, (float)(scaledWidth3 - this.renderer.getStringWidth(string10) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n35 = 0;
-                ++array19[n35];
+                ++array7[n35];
             }
             if (this.speed.getValue()) {
                 final String string11 = s4 + "Speed " + ChatFormatting.WHITE + MadCat.speedManager.getSpeedKpH() + " km/h";
-                this.renderer.drawString(string11, (float)(scaledWidth3 - this.renderer.getStringWidth(string11) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array20 = array7;
+                this.renderer.drawString(string11, (float)(scaledWidth3 - this.renderer.getStringWidth(string11) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n36 = 0;
-                ++array20[n36];
+                ++array7[n36];
             }
             if (this.tps.getValue()) {
                 final String string12 = s4 + "TPS " + ChatFormatting.WHITE + MadCat.serverManager.getTPS();
-                this.renderer.drawString(string12, (float)(scaledWidth3 - this.renderer.getStringWidth(string12) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                final int[] array21 = array7;
+                this.renderer.drawString(string12, (float)(scaledWidth3 - this.renderer.getStringWidth(string12) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                 final int n37 = 0;
-                ++array21[n37];
+                ++array7[n37];
             }
             final String string13 = s4 + "FPS " + ChatFormatting.WHITE + Minecraft.getDebugFPS();
             final String string14 = s4 + "Ping " + ChatFormatting.WHITE + MadCat.serverManager.getPing();
             if (this.renderer.getStringWidth(string14) > this.renderer.getStringWidth(string13)) {
                 if (this.ping.getValue()) {
-                    this.renderer.drawString(string14, (float)(scaledWidth3 - this.renderer.getStringWidth(string14) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array22 = array7;
+                    this.renderer.drawString(string14, (float)(scaledWidth3 - this.renderer.getStringWidth(string14) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n38 = 0;
-                    ++array22[n38];
+                    ++array7[n38];
                 }
                 if (this.fps.getValue()) {
-                    this.renderer.drawString(string13, (float)(scaledWidth3 - this.renderer.getStringWidth(string13) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array23 = array7;
+                    this.renderer.drawString(string13, (float)(scaledWidth3 - this.renderer.getStringWidth(string13) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n39 = 0;
-                    ++array23[n39];
+                    ++array7[n39];
                 }
             }
             else {
                 if (this.fps.getValue()) {
-                    this.renderer.drawString(string13, (float)(scaledWidth3 - this.renderer.getStringWidth(string13) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array24 = array7;
+                    this.renderer.drawString(string13, (float)(scaledWidth3 - this.renderer.getStringWidth(string13) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n40 = 0;
-                    ++array24[n40];
+                    ++array7[n40];
                 }
                 if (this.ping.getValue()) {
-                    this.renderer.drawString(string14, (float)(scaledWidth3 - this.renderer.getStringWidth(string14) - 2), (float)(2 + n27++ * 10), ((boolean)ClickGui.INSTANCE().rainbow.getValue()) ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
-                    final int[] array25 = array7;
+                    this.renderer.drawString(string14, (float)(scaledWidth3 - this.renderer.getStringWidth(string14) - 2), (float)(2 + n27++ * 10), ClickGui.INSTANCE().rainbow.getValue() ? ((ClickGui.INSTANCE().rainbowModeA.getValue() == ClickGui.rainbowModeArray.Up) ? ColorUtil.rainbow(array7[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB() : ColorUtil.rainbow(ClickGui.INSTANCE().rainbowHue.getValue()).getRGB()) : (this.pulse.getValue() ? ColorUtil.pulseColor(new Color(this.color), this.index.getValue(), array7[0]).getRGB() : this.color), true);
                     final int n41 = 0;
-                    ++array25[n41];
+                    ++array7[n41];
                 }
             }
         }
@@ -564,9 +544,8 @@ extends Module {
                 for (final char c3 : charArray3) {
                     this.renderer.drawString(String.valueOf(c3), 2.0f + n49, (float)(scaledHeight3 - n48 - 11), ColorUtil.rainbow(array26[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB(), true);
                     n49 += this.renderer.getStringWidth(String.valueOf(c3));
-                    final int[] array28 = array26;
                     final int n51 = 0;
-                    ++array28[n51];
+                    ++array26[n51];
                 }
                 final int[] array29 = { 1 };
                 final char[] charArray4 = s7.toCharArray();
@@ -574,9 +553,8 @@ extends Module {
                 for (final char c4 : charArray4) {
                     this.renderer.drawString(String.valueOf(c4), 2.0f + n52, (float)(scaledHeight3 - n48), ColorUtil.rainbow(array29[0] * ClickGui.INSTANCE().rainbowHue.getValue()).getRGB(), true);
                     n52 += this.renderer.getStringWidth(String.valueOf(c4));
-                    final int[] array31 = array29;
                     final int n54 = 0;
-                    ++array31[n54];
+                    ++array29[n54];
                 }
             }
         }

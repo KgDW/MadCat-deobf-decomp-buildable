@@ -9,7 +9,7 @@ public interface IEntityRenderer
 {
     @Invoker("setupCameraTransform")
     void invokeSetupCameraTransform(final float p0, final int p1);
-
+    
     @Invoker("renderHand")
     void invokeRenderHand(final float p0, final int p1);
 }

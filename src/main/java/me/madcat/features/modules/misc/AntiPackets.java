@@ -622,7 +622,7 @@ extends Module {
         if (this.hudAmount == 0) {
             return "";
         }
-        return this.hudAmount + "";
+        return String.valueOf(this.hudAmount);
     }
 
     @SubscribeEvent

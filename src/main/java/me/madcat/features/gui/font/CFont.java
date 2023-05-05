@@ -130,7 +130,7 @@ public class CFont {
     public int getStringWidth(String string) {
         int n = 0;
         for (char c : string.toCharArray()) {
-            if (c >= this.charData.length || c < '\u0000') continue;
+            if (c >= this.charData.length) continue;
             int n2 = this.charData[c].width - 8;
             this.getClass();
             n += n2;

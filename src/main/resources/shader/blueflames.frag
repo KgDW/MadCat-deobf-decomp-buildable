@@ -6,7 +6,7 @@ uniform float time;
 uniform vec2 resolution;
 uniform sampler2D texture;
 
-#define hash(a) fract(sin(a)*12345.0) 
+#define hash(a) fract(sin(a)*12345.0)
 #define noise(p) ((old_noise(p, 883.0, 971.0) + old_noise(p + 0.5, 113.0, 157.0)) * 0.5)
 
 float glowShader() {
@@ -27,6 +27,14 @@ float glowShader() {
 	}
 
 	return alpha;
+}
+
+float old_noise(vec3 x, float c1, float c2) {
+    vec3 p = floor(x);
+    vec3 f = fract(x);
+    f = f*f*(3.0-2.0*f);
+    float n = p.x + p.y*c2+ c1*p.z;
+    return mix;
 }
 
 float fbm(vec2 n) {

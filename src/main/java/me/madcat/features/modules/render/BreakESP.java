@@ -94,7 +94,7 @@ extends Module {
                 } else if ((int)minePosition.breakTime.getPassedTimeMs() < 1500) {
                     double d4 = (double)minePosition.breakTime.getPassedTimeMs() / 15.0;
                     DecimalFormat decimalFormat = new DecimalFormat("0.0");
-                    this.renderNameTag(ChatFormatting.GREEN + "" + decimalFormat.format(d4) + "%", d3, d2 - 0.3, d, render3DEvent.getPartialTicks());
+                    this.renderNameTag(ChatFormatting.GREEN + decimalFormat.format(d4) + "%", d3, d2 - 0.3, d, render3DEvent.getPartialTicks());
                 } else {
                     this.renderNameTag(ChatFormatting.GREEN + "100.0%", d3, d2 - 0.3, d, render3DEvent.getPartialTicks());
                 }

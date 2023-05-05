@@ -206,7 +206,7 @@ extends Module {
                 }
             }
             if (!(f2 > 0.0f)) continue;
-            String string = "" + MathUtil.round(entityLivingBase.getHealth() / entityLivingBase.getMaxHealth() * 20.0f, 1);
+            String string = String.valueOf(MathUtil.round(entityLivingBase.getHealth() / entityLivingBase.getMaxHealth() * 20.0f, 1));
             if (this.heathPercentage.getValue() && this.espMode.getValue() != espModeEn.Box && this.heathPercentage.getValue()) {
                 GlStateManager.pushMatrix();
                 EntityESP.mc.fontRenderer.drawStringWithShadow(string, (float)d7 - 30.0f, (float)((double)((float)d10) - d12), -1);

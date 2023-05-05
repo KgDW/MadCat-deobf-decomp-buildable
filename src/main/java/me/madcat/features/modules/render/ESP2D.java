@@ -309,7 +309,7 @@ extends Module {
             int n4;
             String string = null;
             EntityLivingBase entityLivingBase;
-            boolean bl3;
+            boolean bl3 = false;
             Entity entity = (Entity) collectedEntity;
             int n5 = this.getColor(entity).getRGB();
             if (!ESP2D.isInViewFrustrum(entity)) continue;
@@ -370,7 +370,7 @@ extends Module {
                     ESP2D.newDrawRect(d9 - (d9 - d7) / 3.0, d10 - 0.5, d9 - 0.5, d10, n5);
                 }
             }
-            if (bl3 = entity instanceof EntityLivingBase) {
+            if (bl3 == entity instanceof EntityLivingBase) {
                 entityLivingBase = (EntityLivingBase) entity;
                 if (bl2) {
                     float f2 = entityLivingBase.getHealth();
@@ -416,7 +416,7 @@ extends Module {
                 }
                 this.drawScaledCenteredString(string, d7 + (d9 - d7) / 2.0, d8 - 1.0 - (double) ((float) ESP2D.mc.fontRenderer.FONT_HEIGHT * this.fontScaleValue.getValue()), this.fontScaleValue.getValue());
             }
-            if (!this.armorBar.getValue() || !(entity instanceof EntityPlayer) || !bl3) continue;
+            if (!this.armorBar.getValue() || !(entity instanceof EntityPlayer)) continue;
             entityLivingBase = (EntityLivingBase) entity;
             double d17 = (d10 - d8) / 4.0;
             for (n4 = 4; n4 > 0; --n4) {
@@ -431,7 +431,7 @@ extends Module {
                     itemStack = entityLivingBase.getItemStackFromSlot(EntityEquipmentSlot.FEET);
                 }
                 double d18 = d17 + 0.25;
-                if (itemStack == null || itemStack.getItem() == null) continue;
+                itemStack.getItem();
                 ESP2D.newDrawRect(d9 + 1.5, d10 + 0.5 - d18 * (double) n4, d9 + 3.5, d10 + 0.5 - d18 * (double) (n4 - 1), new Color(0, 0, 0, 120).getRGB());
                 ESP2D.newDrawRect(d9 + 2.0, d10 + 0.5 - d18 * (double) (n4 - 1) - 0.25, d9 + 3.0, d10 + 0.5 - d18 * (double) (n4 - 1) - 0.25 - (d17 - 0.25) * MathHelper.clamp((double) InventoryUtil.getItemDurability(itemStack) / (double) itemStack.getMaxDamage(), 0.0, 1.0), new Color(0, 255, 255).getRGB());
             }
@@ -615,7 +615,7 @@ extends Module {
     }
 
     public static int getRainbowOpaque(int n, float f, float f2, int n2) {
-        float f3 = (float)((System.currentTimeMillis() + (long)n2) % (long)(n * 1000)) / (float)(n * 1000);
+        float f3 = (float)((System.currentTimeMillis() + (long)n2) % (n * 1000L)) / (float)(n * 1000);
         return Color.HSBtoRGB(f3, f, f2);
     }
 

@@ -1,19 +1,16 @@
 package me.madcat.mixin.mixins;
 
-import org.spongepowered.asm.mixin.Overwrite;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.Packet;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.play.client.CPacketEntityAction;
-import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.common.MinecraftForge;
 import me.madcat.event.events.UpdateWalkingPlayerEventTwo;
 import net.minecraft.client.Minecraft;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Shadow;
-import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.network.play.client.CPacketEntityAction;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraftforge.common.MinecraftForge;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin({ EntityPlayerSP.class })
 public abstract class MixinEntityPlayerSPTwo extends MixinEntity
@@ -49,32 +46,35 @@ public abstract class MixinEntityPlayerSPTwo extends MixinEntity
         return false;
     }
 
+    /**
+     * @author
+     */
     @Overwrite
     private void onUpdateWalkingPlayer() {
         final boolean flag = this.isSprinting();
         final UpdateWalkingPlayerEventTwo pre = new UpdateWalkingPlayerEventTwo(0, this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch, this.onGround);
-        MinecraftForge.EVENT_BUS.post((Event)pre);
+        MinecraftForge.EVENT_BUS.post(pre);
         if (pre.isCanceled()) {
             final UpdateWalkingPlayerEventTwo post = new UpdateWalkingPlayerEventTwo(1, pre.getX(), pre.getY(), pre.getZ(), pre.getYaw(), pre.getPitch(), pre.isOnGround());
-            MinecraftForge.EVENT_BUS.post((Event)post);
+            MinecraftForge.EVENT_BUS.post(post);
             return;
         }
         if (flag != this.serverSprintState) {
             if (flag) {
-                this.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Minecraft.getMinecraft().player, CPacketEntityAction.Action.START_SPRINTING));
+                this.connection.sendPacket(new CPacketEntityAction(Minecraft.getMinecraft().player, CPacketEntityAction.Action.START_SPRINTING));
             }
             else {
-                this.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Minecraft.getMinecraft().player, CPacketEntityAction.Action.STOP_SPRINTING));
+                this.connection.sendPacket(new CPacketEntityAction(Minecraft.getMinecraft().player, CPacketEntityAction.Action.STOP_SPRINTING));
             }
             this.serverSprintState = flag;
         }
         final boolean flag2 = this.isSneaking();
         if (flag2 != this.serverSneakState) {
             if (flag2) {
-                this.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Minecraft.getMinecraft().player, CPacketEntityAction.Action.START_SNEAKING));
+                this.connection.sendPacket(new CPacketEntityAction(Minecraft.getMinecraft().player, CPacketEntityAction.Action.START_SNEAKING));
             }
             else {
-                this.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Minecraft.getMinecraft().player, CPacketEntityAction.Action.STOP_SNEAKING));
+                this.connection.sendPacket(new CPacketEntityAction(Minecraft.getMinecraft().player, CPacketEntityAction.Action.STOP_SNEAKING));
             }
             this.serverSneakState = flag2;
         }
@@ -88,20 +88,20 @@ public abstract class MixinEntityPlayerSPTwo extends MixinEntity
             final boolean flag4 = d4 != 0.0 || d5 != 0.0;
             if (this.ridingEntity == null) {
                 if (flag3 && flag4) {
-                    this.connection.sendPacket((Packet)new CPacketPlayer.PositionRotation(pre.getX(), pre.getY(), pre.getZ(), pre.getYaw(), pre.getPitch(), pre.isOnGround()));
+                    this.connection.sendPacket(new CPacketPlayer.PositionRotation(pre.getX(), pre.getY(), pre.getZ(), pre.getYaw(), pre.getPitch(), pre.isOnGround()));
                 }
                 else if (flag3) {
-                    this.connection.sendPacket((Packet)new CPacketPlayer.Position(pre.getX(), pre.getY(), pre.getZ(), pre.isOnGround()));
+                    this.connection.sendPacket(new CPacketPlayer.Position(pre.getX(), pre.getY(), pre.getZ(), pre.isOnGround()));
                 }
                 else if (flag4) {
-                    this.connection.sendPacket((Packet)new CPacketPlayer.Rotation(pre.getYaw(), pre.getPitch(), pre.isOnGround()));
+                    this.connection.sendPacket(new CPacketPlayer.Rotation(pre.getYaw(), pre.getPitch(), pre.isOnGround()));
                 }
                 else {
-                    this.connection.sendPacket((Packet)new CPacketPlayer(pre.isOnGround()));
+                    this.connection.sendPacket(new CPacketPlayer(pre.isOnGround()));
                 }
             }
             else {
-                this.connection.sendPacket((Packet)new CPacketPlayer.PositionRotation(this.motionX, -999.0, this.motionZ, pre.getYaw(), pre.getPitch(), pre.isOnGround()));
+                this.connection.sendPacket(new CPacketPlayer.PositionRotation(this.motionX, -999.0, this.motionZ, pre.getYaw(), pre.getPitch(), pre.isOnGround()));
                 flag3 = false;
             }
             ++this.positionUpdateTicks;
@@ -118,7 +118,7 @@ public abstract class MixinEntityPlayerSPTwo extends MixinEntity
             this.prevOnGround = this.onGround;
             this.autoJumpEnabled = this.mc.gameSettings.autoJump;
             final UpdateWalkingPlayerEventTwo post2 = new UpdateWalkingPlayerEventTwo(1, pre.getX(), pre.getY(), pre.getZ(), pre.getYaw(), pre.getPitch(), pre.isOnGround());
-            MinecraftForge.EVENT_BUS.post((Event)post2);
+            MinecraftForge.EVENT_BUS.post(post2);
         }
     }
 }

@@ -69,11 +69,6 @@ extends Button {
         }
     }
 
-    @Override
-    public int getHeight() {
-        return 14;
-    }
-
     private void setSettingFromX(int n) {
         float f = ((float)n - this.x) / ((float)this.width + 7.4f);
         if (this.setting.getValue() instanceof Double) {

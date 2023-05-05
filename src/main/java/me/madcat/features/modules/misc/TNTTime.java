@@ -17,18 +17,18 @@ extends Module {
             if (!(entity instanceof EntityTNTPrimed)) {
                 continue;
             }
-            String string = ChatFormatting.GREEN + "";
+            String string = String.valueOf(ChatFormatting.GREEN);
             if ((double)((EntityTNTPrimed)entity).getFuse() / 20.0 > 0.0) {
-                string = ChatFormatting.DARK_RED + "";
+                string = String.valueOf(ChatFormatting.DARK_RED);
             }
             if ((double)((EntityTNTPrimed)entity).getFuse() / 20.0 > 1.0) {
-                string = ChatFormatting.RED + "";
+                string = String.valueOf(ChatFormatting.RED);
             }
             if ((double)((EntityTNTPrimed)entity).getFuse() / 20.0 > 2.0) {
-                string = ChatFormatting.YELLOW + "";
+                string = String.valueOf(ChatFormatting.YELLOW);
             }
             if ((double)((EntityTNTPrimed)entity).getFuse() / 20.0 > 3.0) {
-                string = ChatFormatting.GREEN + "";
+                string = String.valueOf(ChatFormatting.GREEN);
             }
             entity.setCustomNameTag(string + String.valueOf((double) ((EntityTNTPrimed) entity).getFuse() / 20.0).substring(0, 3) + "s");
             entity.setAlwaysRenderNameTag(true);

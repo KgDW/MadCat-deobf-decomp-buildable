@@ -1,7 +1,6 @@
 package me.madcat.features.modules.misc;
 
 import me.madcat.MadCat;
-import net.minecraft.scoreboard.Team;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import me.madcat.features.setting.Setting;
@@ -22,7 +21,7 @@ public class TabFriends extends Module
     }
 
     public static String getPlayerName(final NetworkPlayerInfo networkPlayerInfoIn) {
-        final String name = (networkPlayerInfoIn.getDisplayName() != null) ? networkPlayerInfoIn.getDisplayName().getFormattedText() : ScorePlayerTeam.formatPlayerName((Team)networkPlayerInfoIn.getPlayerTeam(), networkPlayerInfoIn.getGameProfile().getName());
+        final String name = (networkPlayerInfoIn.getDisplayName() != null) ? networkPlayerInfoIn.getDisplayName().getFormattedText() : ScorePlayerTeam.formatPlayerName(networkPlayerInfoIn.getPlayerTeam(), networkPlayerInfoIn.getGameProfile().getName());
         if (!MadCat.friendManager.isFriend(name)) {
             return name;
         }
@@ -123,6 +122,6 @@ public class TabFriends extends Module
         Gray,
         DarkGray,
         Black,
-        None;
+        None
     }
 }

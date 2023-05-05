@@ -198,7 +198,7 @@ public class DrawHelper {
     }
 
     public static Color rainbow(int n, float f, float f2) {
-        double d = Math.ceil((System.currentTimeMillis() + (long)n) / 16L);
+        double d = Math.ceil((double) (System.currentTimeMillis() + (long) n) / 16L);
         return Color.getHSBColor((float)(d % 360.0 / 360.0), f, f2);
     }
 

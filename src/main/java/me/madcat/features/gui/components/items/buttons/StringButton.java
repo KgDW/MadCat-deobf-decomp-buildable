@@ -85,11 +85,6 @@ extends Button {
     }
 
     @Override
-    public int getHeight() {
-        return 14;
-    }
-
-    @Override
     public void toggle() {
         this.isListening = !this.isListening;
     }

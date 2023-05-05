@@ -15,24 +15,24 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin({ Minecraft.class })
-public abstract class MixinMinecraft
-{
-    @Inject(method = { "shutdownMinecraftApplet" }, at = { @At("HEAD") })
-    private void stopClient(final CallbackInfo callbackInfo) {
+@Mixin(value={Minecraft.class})
+public abstract class MixinMinecraft {
+    @Inject(method={"shutdownMinecraftApplet"}, at={@At(value="HEAD")})
+    private void stopClient(CallbackInfo callbackInfo) {
         this.unload();
     }
 
-    @Redirect(method = { "run" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;displayCrashReport(Lnet/minecraft/crash/CrashReport;)V"))
-    public void displayCrashReport(final Minecraft minecraft, final CrashReport crashReport) {
+    @Redirect(method={"run"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/Minecraft;displayCrashReport(Lnet/minecraft/crash/CrashReport;)V"))
+    public void displayCrashReport(Minecraft minecraft, CrashReport crashReport) {
         this.unload();
     }
 
-    @Inject(method = { "runTickKeyboard" }, at = { @At(value = "INVOKE", remap = false, target = "Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal = 0, shift = At.Shift.BEFORE) })
-    private void onKeyboard(final CallbackInfo callbackInfo) {
-        final int i = (Keyboard.getEventKey() == 0) ? (Keyboard.getEventCharacter() + '\u0100') : Keyboard.getEventKey();
+    @Inject(method={"runTickKeyboard"}, at={@At(value="INVOKE", remap=false, target="Lorg/lwjgl/input/Keyboard;getEventKey()I", ordinal=0, shift=At.Shift.BEFORE)})
+    private void onKeyboard(CallbackInfo callbackInfo) {
+        int i;
+        int n = i = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey();
         if (Keyboard.getEventKeyState()) {
-            final KeyEvent event = new KeyEvent(i);
+            KeyEvent event = new KeyEvent(i);
             MinecraftForge.EVENT_BUS.post(event);
         }
     }
@@ -43,13 +43,13 @@ public abstract class MixinMinecraft
         MadCat.LOGGER.info("Finished client shutdown.");
     }
 
-    @Redirect(method = { "sendClickBlockToController" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/EntityPlayerSP;isHandActive()Z"))
-    private boolean isHandActiveWrapper(final EntityPlayerSP playerSP) {
+    @Redirect(method={"sendClickBlockToController"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/entity/EntityPlayerSP;isHandActive()Z"))
+    private boolean isHandActiveWrapper(EntityPlayerSP playerSP) {
         return !MultiTask.INSTANCE().isOn() && playerSP.isHandActive();
     }
 
-    @Redirect(method = { "rightClickMouse" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;getIsHittingBlock()Z", ordinal = 0))
-    private boolean isHittingBlockHook(final PlayerControllerMP playerControllerMP) {
+    @Redirect(method={"rightClickMouse"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/multiplayer/PlayerControllerMP;getIsHittingBlock()Z", ordinal=0))
+    private boolean isHittingBlockHook(PlayerControllerMP playerControllerMP) {
         return !MultiTask.INSTANCE().isOn() && playerControllerMP.getIsHittingBlock();
     }
 }

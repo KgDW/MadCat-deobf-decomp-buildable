@@ -22,17 +22,19 @@ extends Module {
             return;
         }
         if (OpenGlHelper.shadersSupported && mc.getRenderViewEntity() instanceof EntityPlayer) {
-            if (GameShaders.mc.entityRenderer.getShaderGroup() != null) {
-                GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-            }
+            GameShaders.mc.entityRenderer.getShaderGroup();
+            GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
             try {
                 GameShaders.mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/" + this.shader.getValue() + ".json"));
             }
             catch (Exception exception) {
                 exception.printStackTrace();
             }
-        } else if (GameShaders.mc.entityRenderer.getShaderGroup() != null && GameShaders.mc.currentScreen == null) {
-            GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+        } else {
+            GameShaders.mc.entityRenderer.getShaderGroup();
+            if (GameShaders.mc.currentScreen == null) {
+                GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+            }
         }
     }
 
@@ -43,9 +45,8 @@ extends Module {
 
     @Override
     public void onDisable() {
-        if (GameShaders.mc.entityRenderer.getShaderGroup() != null) {
-            GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-        }
+        GameShaders.mc.entityRenderer.getShaderGroup();
+        GameShaders.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
     }
 
     public enum Mode {

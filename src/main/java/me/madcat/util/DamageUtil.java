@@ -269,7 +269,6 @@ implements Wrapper {
                     continue;
                 }
                 RayTraceResult rayTraceResult2 = iBlockState2.collisionRayTrace(world, mutableBlockPos, vec3d, vec3d2);
-                if (rayTraceResult2 == null) continue;
                 return rayTraceResult2;
             }
         }

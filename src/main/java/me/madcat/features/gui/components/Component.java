@@ -60,9 +60,6 @@ extends Feature {
     public static float calculateRotation(float f) {
         float f2 = 0.0f;
         f %= 360.0f;
-        if (f2 >= 180.0f) {
-            f -= 360.0f;
-        }
         if (f < -180.0f) {
             f += 360.0f;
         }

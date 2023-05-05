@@ -39,19 +39,22 @@ extends Module {
         if (this.mc.world != null) {
             if (ClickGui.INSTANCE().isEnabled() || this.mc.currentScreen instanceof GuiContainer || this.mc.currentScreen instanceof GuiChat || this.mc.currentScreen instanceof GuiConfirmOpenLink || this.mc.currentScreen instanceof GuiEditSign || this.mc.currentScreen instanceof GuiGameOver || this.mc.currentScreen instanceof GuiOptions || this.mc.currentScreen instanceof GuiIngameMenu || this.mc.currentScreen instanceof GuiVideoSettings || this.mc.currentScreen instanceof GuiScreenOptionsSounds || this.mc.currentScreen instanceof GuiControls || this.mc.currentScreen instanceof GuiCustomizeSkin || this.mc.currentScreen instanceof GuiModList) {
                 if (OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof EntityPlayer) {
-                    if (this.mc.entityRenderer.getShaderGroup() != null) {
-                        this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
-                    }
+                    this.mc.entityRenderer.getShaderGroup();
+                    this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
                     try {
                         this.mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
                     }
                     catch (Exception exception) {
                         exception.printStackTrace();
                     }
-                } else if (this.mc.entityRenderer.getShaderGroup() != null && this.mc.currentScreen == null) {
-                    this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                } else {
+                    this.mc.entityRenderer.getShaderGroup();
+                    if (this.mc.currentScreen == null) {
+                        this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+                    }
                 }
-            } else if (this.mc.entityRenderer.getShaderGroup() != null) {
+            } else {
+                this.mc.entityRenderer.getShaderGroup();
                 this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
             }
         }

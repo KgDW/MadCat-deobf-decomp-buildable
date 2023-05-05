@@ -2,7 +2,6 @@ package me.madcat.features.modules.render;
 
 import me.madcat.event.events.PacketEvent;
 import me.madcat.event.events.RenderEntityModelEvent;
-import me.madcat.features.Feature;
 import me.madcat.features.modules.Module;
 import me.madcat.features.setting.Setting;
 import net.minecraft.entity.Entity;

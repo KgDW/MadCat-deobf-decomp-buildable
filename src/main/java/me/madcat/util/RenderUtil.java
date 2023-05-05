@@ -1078,7 +1078,7 @@ implements Wrapper {
 
     public static void checkSetupFBO() {
         Framebuffer framebuffer = RenderUtil.mc.getFramebuffer();
-        if (framebuffer != null && framebuffer.depthBuffer > -1) {
+        if (framebuffer.depthBuffer > -1) {
             RenderUtil.setupFBO(framebuffer);
             framebuffer.depthBuffer = -1;
         }

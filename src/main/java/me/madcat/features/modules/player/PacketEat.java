@@ -26,6 +26,10 @@ extends Module {
         return INSTANCE;
     }
 
+    public static Module getInstance() {
+        return null;
+    }
+
     @Override
     public void onUpdate() {
         if (Feature.fullNullCheck()) {
